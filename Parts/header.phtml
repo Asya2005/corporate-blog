@@ -1,0 +1,16 @@
+<header style="background:#6c5ce7; color:white; padding:20px; text-align:center;">
+    <h1>📰 <?= htmlspecialchars($this->title) ?></h1>
+</header>
+
+<nav style="background:#fff; padding:10px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); display:flex; justify-content:space-between;">
+    <div>
+        Вітаємо, <strong><?= htmlspecialchars($_SESSION['user_name'] ?? 'Гість') ?></strong>
+    </div>
+    <div>
+        <a href="index.php">🏠 Головна</a>
+        <a href="create_post.php">➕ Створити пост</a>
+        <a href="users.php">👥 Користувачі</a>
+        <a href="profile.php">👤 Профіль</a>
+        <a href="logout.php">🚪 Вийти</a>
+    </div>
+</nav>

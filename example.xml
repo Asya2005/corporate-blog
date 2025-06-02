@@ -1,0 +1,12 @@
+<blog>
+    <post id="1">
+        <title>Перший пост</title>
+        <author>Наталя</author>
+        <content>Це перший пост у блозі.</content>
+    </post>
+    <post id="2">
+        <title>Другий пост</title>
+        <author>Олег</author>
+        <content>Це другий пост у блозі.</content>
+    </post>
+</blog>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Чат</title>
+  <style>
+    body { font-family: Arial; background: #f5f5f5; padding: 20px; }
+    #chat { border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; background: #fff; }
+    #msg { width: 80%; }
+  </style>
+</head>
+<body>
+
+<h2>Чат</h2>
+<input id="username" placeholder="Ваше ім’я" />
+<button onclick="setName()">OK</button>
+<div id="chat"></div>
+<input id="msg" placeholder="Ваше повідомлення..." />
+<button onclick="sendMessage()">Надіслати</button>
+
+<script>
+let ws = new WebSocket("ws://localhost:8080");
+let username = "Гість";
+
+function setName() {
+    username = document.getElementById("username").value;
+    ws.send(JSON.stringify({ setName: username }));
+}
+
+ws.onmessage = (event) => {
+    let data = JSON.parse(event.data);
+    let line = `<p><b>${data.from}</b> [${data.time}]: ${data.text}</p>`;
+    document.getElementById("chat").innerHTML += line;
+};
+
+function sendMessage() {
+    const msg = document.getElementById("msg").value;
+    const to = document.getElementById("recipient").value;
+
+    if (msg.trim()) {
+        ws.send(JSON.stringify({ text: msg, to: to }));
+        document.getElementById("msg").value = "";
+    }
+}
+
+</script>
+
+</body>
+</html>
