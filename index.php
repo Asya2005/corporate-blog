@@ -37,6 +37,7 @@ if ($user_id) {
     $stmt->execute([$user_id]);
     $avatar = $stmt->fetchColumn();
 }
+
 ?>
 
 
